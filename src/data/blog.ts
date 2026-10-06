@@ -22,7 +22,7 @@ export async function markdownToHTML(markdown: string) {
   const p = await unified()
     .use(remarkParse)
     .use(remarkRehype)
-    .use(rehypePrettyCode, {
+    .use(rehypePrettyCode as any, {
       // https://rehype-pretty.pages.dev/#usage
       theme: {
         light: "min-light",
@@ -30,7 +30,7 @@ export async function markdownToHTML(markdown: string) {
       },
       keepBackground: false,
     })
-    .use(rehypeStringify)
+    .use(rehypeStringify as any)
     .process(markdown);
 
   return p.toString();
