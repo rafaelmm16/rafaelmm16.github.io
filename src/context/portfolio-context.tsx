@@ -251,6 +251,11 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
 
       if (!putRes.ok) {
         const errJson = await putRes.json().catch(() => ({}));
+        if (putRes.status === 403) {
+          throw new Error(
+            "Permissão negada (403): O token não possui permissão de gravação. No GitHub, verifique se a permissão 'Contents' está definida como 'Read and write' (ou escopo 'repo' em token clássico)."
+          );
+        }
         throw new Error(errJson.message || `Falha no commit (${putRes.status})`);
       }
 
@@ -312,12 +317,12 @@ export function PortfolioProvider({ children }: { children: React.ReactNode }) {
       }
 
       return {
-        success: true,
+        success: hasPush,
         user: loginUser,
         repoAccess: hasPush,
         message: hasPush
-          ? `Conectado como @${loginUser} com permissão de publicação no repositório ${owner}/${repo}!`
-          : `Conectado como @${loginUser}, mas sem permissão de escrita no repositório ${owner}/${repo}.`,
+          ? `Conectado como @${loginUser} com permissão confirmada de gravação no repositório ${owner}/${repo}!`
+          : `Conectado como @${loginUser}, mas o token NÃO tem permissão de gravação no repositório ${owner}/${repo}. No GitHub, configure a permissão "Contents" como "Read and write" ou use um token clássico com escopo "repo".`,
       };
     } catch (err: any) {
       return { success: false, message: err?.message || "Erro ao conectar com a API do GitHub." };
