@@ -1,3 +1,5 @@
+"use client";
+
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { ModeToggle } from "@/components/mode-toggle";
 import { buttonVariants } from "@/components/ui/button";
@@ -7,16 +9,42 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { DATA } from "@/data/resume";
+import { Icons } from "@/components/icons";
+import { usePortfolio } from "@/context/portfolio-context";
 import { cn } from "@/lib/utils";
+import { HomeIcon, NotebookIcon, Settings2Icon } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const { data } = usePortfolio();
+
+  // Ocultar Navbar flutuante na tela de administração
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
+  const getSocialIcon = (key: string) => {
+    const k = key.toLowerCase();
+    if (k.includes("github")) return <Icons.github className="size-4" />;
+    if (k.includes("linkedin")) return <Icons.linkedin className="size-4" />;
+    if (k.includes("mail") || k.includes("email")) return <Icons.email className="size-4" />;
+    if (k.includes("x") || k.includes("twitter")) return <Icons.x className="size-4" />;
+    if (k.includes("youtube")) return <Icons.youtube className="size-4" />;
+    return <Icons.globe className="size-4" />;
+  };
+
+  const navItems = [
+    { href: "/", icon: HomeIcon, label: "Home" },
+    { href: "/blog", icon: NotebookIcon, label: "Blog" },
+  ];
+
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 mx-auto mb-4 flex origin-bottom h-full max-h-14">
       <div className="fixed bottom-0 inset-x-0 h-16 w-full bg-background to-transparent backdrop-blur-lg [-webkit-mask-image:linear-gradient(to_top,black,transparent)] dark:bg-background"></div>
       <Dock className="z-50 pointer-events-auto relative mx-auto flex min-h-full h-full items-center px-1 bg-background [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)] transform-gpu dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset] ">
-        {DATA.navbar.map((item) => (
+        {navItems.map((item) => (
           <DockIcon key={item.href}>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -37,36 +65,58 @@ export default function Navbar() {
           </DockIcon>
         ))}
         <Separator orientation="vertical" className="h-full" />
-        {Object.entries(DATA.contact.social)
-          .filter(([_, social]) => social.navbar)
-          .map(([name, social]) => (
-            <DockIcon key={name}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Link
-                    href={social.url}
-                    className={cn(
-                      buttonVariants({ variant: "ghost", size: "icon" }),
-                      "size-12"
-                    )}
-                  >
-                    <social.icon className="size-4" />
-                  </Link>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{name}</p>
-                </TooltipContent>
-              </Tooltip>
-            </DockIcon>
-          ))}
+        {data?.contact?.social &&
+          Object.entries(data.contact.social)
+            .filter(([_, social]) => social.navbar)
+            .map(([name, social]) => (
+              <DockIcon key={name}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Link
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cn(
+                        buttonVariants({ variant: "ghost", size: "icon" }),
+                        "size-12"
+                      )}
+                    >
+                      {getSocialIcon(name)}
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{name}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </DockIcon>
+            ))}
         <Separator orientation="vertical" className="h-full py-2" />
+        <DockIcon>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Link
+                href="/admin"
+                className={cn(
+                  buttonVariants({ variant: "ghost", size: "icon" }),
+                  "size-12 opacity-65 hover:opacity-100 transition-opacity"
+                )}
+                aria-label="Painel de Administração"
+              >
+                <Settings2Icon className="size-4" />
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Painel de Administração</p>
+            </TooltipContent>
+          </Tooltip>
+        </DockIcon>
         <DockIcon>
           <Tooltip>
             <TooltipTrigger asChild>
               <ModeToggle />
             </TooltipTrigger>
             <TooltipContent>
-              <p>Theme</p>
+              <p>Tema</p>
             </TooltipContent>
           </Tooltip>
         </DockIcon>

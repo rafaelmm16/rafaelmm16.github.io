@@ -1,19 +1,24 @@
-import { HackathonCard } from "@/components/hackathon-card";
+"use client";
+
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { DATA } from "@/data/resume";
+import { usePortfolio } from "@/context/portfolio-context";
 import Link from "next/link";
 import Markdown from "react-markdown";
 
 const BLUR_FADE_DELAY = 0.04;
 
 export default function Page() {
+  const { data } = usePortfolio();
+
+  const firstName = data.name ? data.name.split(" ")[0] : "Rafael";
+
   return (
-    <main className="flex flex-col min-h-[100dvh] space-y-10">
+    <main className="max-w-2xl mx-auto py-12 sm:py-24 px-6 flex flex-col min-h-[100dvh] space-y-10">
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8">
           <div className="gap-2 flex justify-between">
@@ -22,18 +27,18 @@ export default function Page() {
                 delay={BLUR_FADE_DELAY}
                 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
                 yOffset={8}
-                text={`Hi, I'm ${DATA.name.split(" ")[0]} 👋`}
+                text={`Olá, eu sou ${firstName} 👋`}
               />
               <BlurFadeText
-                className="max-w-[600px] md:text-xl"
+                className="max-w-[600px] md:text-xl text-muted-foreground"
                 delay={BLUR_FADE_DELAY}
-                text={DATA.description}
+                text={data.description}
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
               <Avatar className="size-28 border">
-                <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
-                <AvatarFallback>{DATA.initials}</AvatarFallback>
+                <AvatarImage alt={data.name} src={data.avatarUrl} />
+                <AvatarFallback>{data.initials || "RM"}</AvatarFallback>
               </Avatar>
             </BlurFade>
           </div>
@@ -41,26 +46,26 @@ export default function Page() {
       </section>
       <section id="about">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
-          <h2 className="text-xl font-bold">About</h2>
+          <h2 className="text-xl font-bold">Sobre</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
           <div className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
-            <Markdown>{DATA.summary}</Markdown>
+            <Markdown>{data.summary}</Markdown>
           </div>
         </BlurFade>
       </section>
       <section id="work">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <h2 className="text-xl font-bold">Work Experience</h2>
+            <h2 className="text-xl font-bold">Experiência Profissional</h2>
           </BlurFade>
-          {DATA.work.map((work, id) => (
+          {data.work?.map((work, id) => (
             <BlurFade
-              key={work.company}
+              key={`${work.company}-${id}`}
               delay={BLUR_FADE_DELAY * 6 + id * 0.05}
             >
               <ResumeCard
-                key={work.company}
+                key={`${work.company}-${id}`}
                 logoUrl={work.logoUrl}
                 altText={work.company}
                 title={work.company}
@@ -77,15 +82,15 @@ export default function Page() {
       <section id="education">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
-            <h2 className="text-xl font-bold">Education</h2>
+            <h2 className="text-xl font-bold">Educação</h2>
           </BlurFade>
-          {DATA.education.map((education, id) => (
+          {data.education?.map((education, id) => (
             <BlurFade
-              key={education.school}
+              key={`${education.school}-${id}`}
               delay={BLUR_FADE_DELAY * 8 + id * 0.05}
             >
               <ResumeCard
-                key={education.school}
+                key={`${education.school}-${id}`}
                 href={education.href}
                 logoUrl={education.logoUrl}
                 altText={education.school}
@@ -100,12 +105,12 @@ export default function Page() {
       <section id="skills">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 9}>
-            <h2 className="text-xl font-bold">Skills</h2>
+            <h2 className="text-xl font-bold">Habilidades</h2>
           </BlurFade>
           <div className="flex flex-wrap gap-1">
-            {DATA.skills.map((skill, id) => (
-              <BlurFade key={skill} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-                <Badge key={skill}>{skill}</Badge>
+            {data.skills?.map((skill, id) => (
+              <BlurFade key={`${skill}-${id}`} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
+                <Badge key={`${skill}-${id}`}>{skill}</Badge>
               </BlurFade>
             ))}
           </div>
@@ -116,29 +121,27 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                  My Projects
+                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm font-medium">
+                  Meus Projetos
                 </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Check out my latest work
+                  Confira meus trabalhos recentes
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I&apos;ve worked on a variety of projects, from simple
-                  websites to complex web applications. Here are a few of my
-                  favorites.
+                  Trabalhei em diversos projetos, desde pequenas páginas web até aplicações completas. Aqui estão alguns dos meus favoritos.
                 </p>
               </div>
             </div>
           </BlurFade>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
-            {DATA.projects.map((project, id) => (
+            {data.projects?.map((project, id) => (
               <BlurFade
-                key={project.title}
+                key={`${project.title}-${id}`}
                 delay={BLUR_FADE_DELAY * 12 + id * 0.05}
               >
                 <ProjectCard
                   href={project.href}
-                  key={project.title}
+                  key={`${project.title}-${id}`}
                   title={project.title}
                   description={project.description}
                   dates={project.dates}
@@ -156,21 +159,27 @@ export default function Page() {
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 16}>
             <div className="space-y-3">
-              <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+              <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm font-medium">
                 Contato
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                 Em um Clique
               </h2>
               <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Quer me contactar? Me mande uma DM{" "}
-                <Link
-                  href={DATA.contact.social.LinkedIn.url}
-                  className="text-blue-500 hover:underline"
-                >
-                  no LinkedIn,
-                </Link>{" "}
-                e eu respondo assim que possivel.
+                Quer conversar ou fazer uma proposta? Me envie uma mensagem{" "}
+                {data.contact?.social?.LinkedIn?.url ? (
+                  <Link
+                    href={data.contact.social.LinkedIn.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:underline"
+                  >
+                    no LinkedIn
+                  </Link>
+                ) : (
+                  <span>pelo email {data.contact?.email}</span>
+                )}
+                {" "}e respondo assim que possível.
               </p>
             </div>
           </BlurFade>
