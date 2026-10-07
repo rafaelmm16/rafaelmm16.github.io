@@ -94,25 +94,6 @@ export default function Navbar() {
         <DockIcon>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Link
-                href="/admin"
-                className={cn(
-                  buttonVariants({ variant: "ghost", size: "icon" }),
-                  "size-12 opacity-65 hover:opacity-100 transition-opacity"
-                )}
-                aria-label="Painel de Administração"
-              >
-                <Settings2Icon className="size-4" />
-              </Link>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Painel de Administração</p>
-            </TooltipContent>
-          </Tooltip>
-        </DockIcon>
-        <DockIcon>
-          <Tooltip>
-            <TooltipTrigger asChild>
               <ModeToggle />
             </TooltipTrigger>
             <TooltipContent>
