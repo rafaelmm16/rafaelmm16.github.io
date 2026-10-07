@@ -18,7 +18,7 @@ export default function Page() {
   const firstName = data.name ? data.name.split(" ")[0] : "Rafael";
 
   return (
-    <main className="max-w-2xl mx-auto py-12 sm:py-24 px-6 flex flex-col min-h-[100dvh] space-y-10">
+    <main className="max-w-2xl mx-auto py-12 sm:py-24 px-6 flex flex-col min-h-dvh space-y-10">
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8">
           <div className="gap-2 flex justify-between">
@@ -30,7 +30,7 @@ export default function Page() {
                 text={`Olá, eu sou ${firstName} 👋`}
               />
               <BlurFadeText
-                className="max-w-[600px] md:text-xl text-muted-foreground"
+                className="max-w-150 md:text-xl text-muted-foreground"
                 delay={BLUR_FADE_DELAY}
                 text={data.description}
               />
@@ -133,7 +133,7 @@ export default function Page() {
               </div>
             </div>
           </BlurFade>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-200 mx-auto">
             {data.projects?.map((project, id) => (
               <BlurFade
                 key={`${project.title}-${id}`}
@@ -165,7 +165,7 @@ export default function Page() {
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                 Em um Clique
               </h2>
-              <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              <p className="mx-auto max-w-150 text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Quer conversar ou fazer uma proposta? Me envie uma mensagem{" "}
                 {data.contact?.social?.LinkedIn?.url ? (
                   <Link

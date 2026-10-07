@@ -710,7 +710,7 @@ export default function AdminPage() {
 
             <div className="space-y-2">
               <Label>Habilidades Atuais ({data.skills.length})</Label>
-              <div className="flex flex-wrap gap-2 p-4 rounded-lg border bg-muted/20 min-h-[100px]">
+              <div className="flex flex-wrap gap-2 p-4 rounded-lg border bg-muted/20 min-h-25">
                 {data.skills.map((skill) => (
                   <Badge
                     key={skill}
