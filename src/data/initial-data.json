@@ -12,7 +12,10 @@
     "Next.js",
     "Typescript",
     "Node.js",
-    "Python"
+    "Python",
+    "HTML",
+    "CSS",
+    "Angular"
   ],
   "contact": {
     "email": "hello@example.com",
@@ -36,6 +39,17 @@
     }
   },
   "work": [
+    {
+      "company": "Plena - Administrado de Beneficios",
+      "href": "https://",
+      "badges": [],
+      "location": "Presencial",
+      "title": "Auxiliar Administrativo",
+      "logoUrl": "/",
+      "start": "May 2026",
+      "end": "Present",
+      "description": "Descreva suas responsabilidades e conquistas aqui..."
+    },
     {
       "company": "IFES - SM",
       "href": "https://www.saomateus.ifes.edu.br/",
