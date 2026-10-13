@@ -1,11 +1,14 @@
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
+import { GitHubCalendarBlock } from "@/components/github-calendar";
+import { HackathonCard } from "@/components/hackathon-card";
 import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { getGithubProjects } from "@/data/github";
 import { DATA } from "@/data/resume";
+import { FileText, Mail } from "lucide-react";
 import Link from "next/link";
 import Markdown from "react-markdown";
 
@@ -32,6 +35,26 @@ export default async function Page() {
                 delay={BLUR_FADE_DELAY}
                 text={DATA.description}
               />
+              <BlurFade delay={BLUR_FADE_DELAY * 2}>
+                <div className="flex flex-wrap gap-2 pt-2">
+                  <Link
+                    href="/curriculo.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg bg-foreground text-background px-4 py-2 text-sm font-medium transition-transform active:scale-95 hover:opacity-90 shadow-xs"
+                  >
+                    <FileText className="size-4" />
+                    Baixar Currículo
+                  </Link>
+                  <Link
+                    href={`mailto:${DATA.contact.email}`}
+                    className="inline-flex items-center gap-2 rounded-lg border bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
+                  >
+                    <Mail className="size-4" />
+                    Entrar em Contato
+                  </Link>
+                </div>
+              </BlurFade>
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
               <Avatar className="size-28 border">
@@ -100,18 +123,87 @@ export default async function Page() {
           ))}
         </div>
       </section>
+      {DATA.certificates && DATA.certificates.length > 0 && (
+        <section id="certificates">
+          <div className="flex min-h-0 flex-col gap-y-3">
+            <BlurFade delay={BLUR_FADE_DELAY * 9}>
+              <h2 className="text-xl font-bold">Certificados & Cursos</h2>
+            </BlurFade>
+            <BlurFade delay={BLUR_FADE_DELAY * 10}>
+              <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
+                {DATA.certificates.map((cert, id) => (
+                  <HackathonCard
+                    key={`${cert.title}-${id}`}
+                    title={cert.title}
+                    description={cert.description}
+                    location={cert.issuer}
+                    dates={cert.dates}
+                    image={cert.image}
+                    links={cert.links}
+                  />
+                ))}
+              </ul>
+            </BlurFade>
+          </div>
+        </section>
+      )}
       <section id="skills">
-        <div className="flex min-h-0 flex-col gap-y-3">
-          <BlurFade delay={BLUR_FADE_DELAY * 9}>
+        <div className="flex min-h-0 flex-col gap-y-4">
+          <BlurFade delay={BLUR_FADE_DELAY * 10}>
             <h2 className="text-xl font-bold">Habilidades</h2>
           </BlurFade>
-          <div className="flex flex-wrap gap-1">
-            {DATA.skills?.map((skill, id) => (
-              <BlurFade key={`${skill}-${id}`} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-                <Badge key={`${skill}-${id}`}>{skill}</Badge>
-              </BlurFade>
-            ))}
+          <div className="flex flex-col gap-y-3">
+            {DATA.skillsByCategory ? (
+              DATA.skillsByCategory.map((categoryGroup, catId) => (
+                <BlurFade
+                  key={categoryGroup.category}
+                  delay={BLUR_FADE_DELAY * 11 + catId * 0.05}
+                >
+                  <div className="space-y-1.5">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                      {categoryGroup.category}
+                    </span>
+                    <div className="flex flex-wrap gap-1">
+                      {categoryGroup.skills.map((skill) => (
+                        <Badge key={skill}>{skill}</Badge>
+                      ))}
+                    </div>
+                  </div>
+                </BlurFade>
+              ))
+            ) : (
+              <div className="flex flex-wrap gap-1">
+                {DATA.skills?.map((skill, id) => (
+                  <BlurFade
+                    key={`${skill}-${id}`}
+                    delay={BLUR_FADE_DELAY * 11 + id * 0.05}
+                  >
+                    <Badge key={`${skill}-${id}`}>{skill}</Badge>
+                  </BlurFade>
+                ))}
+              </div>
+            )}
           </div>
+        </div>
+      </section>
+      <section id="github-activity">
+        <div className="flex min-h-0 flex-col gap-y-3">
+          <BlurFade delay={BLUR_FADE_DELAY * 12}>
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-bold">Atividade no GitHub</h2>
+              <Link
+                href="https://github.com/rafaelmm16"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-muted-foreground hover:underline"
+              >
+                @rafaelmm16
+              </Link>
+            </div>
+          </BlurFade>
+          <BlurFade delay={BLUR_FADE_DELAY * 13}>
+            <GitHubCalendarBlock username="rafaelmm16" />
+          </BlurFade>
         </div>
       </section>
       <section id="projects">
