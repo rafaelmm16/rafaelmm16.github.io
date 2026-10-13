@@ -4,14 +4,16 @@ import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { getGithubProjects } from "@/data/github";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
 import Markdown from "react-markdown";
 
 const BLUR_FADE_DELAY = 0.04;
 
-export default function Page() {
+export default async function Page() {
   const firstName = DATA.name ? DATA.name.split(" ")[0] : "Rafael";
+  const projects = await getGithubProjects();
 
   return (
     <main className="max-w-2xl mx-auto py-12 sm:py-24 px-6 flex flex-col min-h-dvh space-y-10">
@@ -130,7 +132,7 @@ export default function Page() {
             </div>
           </BlurFade>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-200 mx-auto">
-            {DATA.projects?.map((project, id) => (
+            {projects?.map((project, id) => (
               <BlurFade
                 key={`${project.title}-${id}`}
                 delay={BLUR_FADE_DELAY * 12 + id * 0.05}
