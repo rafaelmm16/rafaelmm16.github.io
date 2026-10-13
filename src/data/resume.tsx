@@ -53,14 +53,14 @@ export const DATA = {
   work: [
     {
       company: "Plena - Administrado de Beneficios",
-      href: "#",
+      href: "https://plenabeneficios.com.br/",
       badges: [],
       location: "Presencial",
       title: "Auxiliar Administrativo",
-      logoUrl: "",
+      logoUrl: "/plena.png",
       start: "May 2026",
       end: "Present",
-      description: "Descreva suas responsabilidades e conquistas aqui...",
+      description: "...",
     },
     {
       company: "IFES - SM",
