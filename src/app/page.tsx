@@ -1,21 +1,17 @@
-"use client";
-
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { usePortfolio } from "@/context/portfolio-context";
+import { DATA } from "@/data/resume";
 import Link from "next/link";
 import Markdown from "react-markdown";
 
 const BLUR_FADE_DELAY = 0.04;
 
 export default function Page() {
-  const { data } = usePortfolio();
-
-  const firstName = data.name ? data.name.split(" ")[0] : "Rafael";
+  const firstName = DATA.name ? DATA.name.split(" ")[0] : "Rafael";
 
   return (
     <main className="max-w-2xl mx-auto py-12 sm:py-24 px-6 flex flex-col min-h-dvh space-y-10">
@@ -32,13 +28,13 @@ export default function Page() {
               <BlurFadeText
                 className="max-w-150 md:text-xl text-muted-foreground"
                 delay={BLUR_FADE_DELAY}
-                text={data.description}
+                text={DATA.description}
               />
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
               <Avatar className="size-28 border">
-                <AvatarImage alt={data.name} src={data.avatarUrl} />
-                <AvatarFallback>{data.initials || "RM"}</AvatarFallback>
+                <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
+                <AvatarFallback>{DATA.initials || "RM"}</AvatarFallback>
               </Avatar>
             </BlurFade>
           </div>
@@ -50,7 +46,7 @@ export default function Page() {
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
           <div className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
-            <Markdown>{data.summary}</Markdown>
+            <Markdown>{DATA.summary}</Markdown>
           </div>
         </BlurFade>
       </section>
@@ -59,7 +55,7 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
             <h2 className="text-xl font-bold">Experiência Profissional</h2>
           </BlurFade>
-          {data.work?.map((work, id) => (
+          {DATA.work?.map((work, id) => (
             <BlurFade
               key={`${work.company}-${id}`}
               delay={BLUR_FADE_DELAY * 6 + id * 0.05}
@@ -84,7 +80,7 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
             <h2 className="text-xl font-bold">Educação</h2>
           </BlurFade>
-          {data.education?.map((education, id) => (
+          {DATA.education?.map((education, id) => (
             <BlurFade
               key={`${education.school}-${id}`}
               delay={BLUR_FADE_DELAY * 8 + id * 0.05}
@@ -108,7 +104,7 @@ export default function Page() {
             <h2 className="text-xl font-bold">Habilidades</h2>
           </BlurFade>
           <div className="flex flex-wrap gap-1">
-            {data.skills?.map((skill, id) => (
+            {DATA.skills?.map((skill, id) => (
               <BlurFade key={`${skill}-${id}`} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
                 <Badge key={`${skill}-${id}`}>{skill}</Badge>
               </BlurFade>
@@ -134,7 +130,7 @@ export default function Page() {
             </div>
           </BlurFade>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-200 mx-auto">
-            {data.projects?.map((project, id) => (
+            {DATA.projects?.map((project, id) => (
               <BlurFade
                 key={`${project.title}-${id}`}
                 delay={BLUR_FADE_DELAY * 12 + id * 0.05}
@@ -167,9 +163,9 @@ export default function Page() {
               </h2>
               <p className="mx-auto max-w-150 text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Quer conversar ou fazer uma proposta? Me envie uma mensagem{" "}
-                {data.contact?.social?.LinkedIn?.url ? (
+                {DATA.contact?.social?.LinkedIn?.url ? (
                   <Link
-                    href={data.contact.social.LinkedIn.url}
+                    href={DATA.contact.social.LinkedIn.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
@@ -177,7 +173,7 @@ export default function Page() {
                     no LinkedIn
                   </Link>
                 ) : (
-                  <span>pelo email {data.contact?.email}</span>
+                  <span>pelo email {DATA.contact?.email}</span>
                 )}
                 {" "}e respondo assim que possível.
               </p>

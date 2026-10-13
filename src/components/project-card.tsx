@@ -41,36 +41,57 @@ export function ProjectCard({
   links,
   className,
 }: Props) {
+  const hasValidLink = Boolean(
+    href &&
+      href !== "#" &&
+      href !== "https://" &&
+      href !== "http://" &&
+      href.trim() !== ""
+  );
+
+  const mediaContent = (
+    <>
+      {video && (
+        <video
+          src={video}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="pointer-events-none mx-auto h-40 w-full object-cover object-top"
+        />
+      )}
+      {image && (
+        <Image
+          src={image}
+          alt={title}
+          width={500}
+          height={300}
+          className="h-40 w-full overflow-hidden object-cover object-top"
+        />
+      )}
+    </>
+  );
+
   return (
     <Card
       className={
         "flex flex-col overflow-hidden border hover:shadow-lg transition-all duration-300 ease-out h-full"
       }
     >
-      <Link
-        href={href || "#"}
-        className={cn("block cursor-pointer", className)}
-      >
-        {video && (
-          <video
-            src={video}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="pointer-events-none mx-auto h-40 w-full object-cover object-top" // needed because random black line at bottom of video
-          />
-        )}
-        {image && (
-          <Image
-            src={image}
-            alt={title}
-            width={500}
-            height={300}
-            className="h-40 w-full overflow-hidden object-cover object-top"
-          />
-        )}
-      </Link>
+      {hasValidLink ? (
+        <Link
+          href={href!}
+          target={href?.startsWith("http") ? "_blank" : undefined}
+          rel={href?.startsWith("http") ? "noopener noreferrer" : undefined}
+          prefetch={false}
+          className={cn("block cursor-pointer", className)}
+        >
+          {mediaContent}
+        </Link>
+      ) : (
+        <div className={cn("block", className)}>{mediaContent}</div>
+      )}
       <CardHeader className="px-2">
         <div className="space-y-1">
           <CardTitle className="mt-1 text-base">{title}</CardTitle>
@@ -102,7 +123,13 @@ export function ProjectCard({
         {links && links.length > 0 && (
           <div className="flex flex-row flex-wrap items-start gap-1">
             {links?.map((link, idx) => (
-              <Link href={link?.href} key={idx} target="_blank">
+              <Link
+                href={link?.href || "#"}
+                key={idx}
+                target="_blank"
+                rel="noopener noreferrer"
+                prefetch={false}
+              >
                 <Badge key={idx} className="flex gap-2 px-2 py-1 text-[10px]">
                   {link.icon || <GlobeIcon className="size-3" />}
                   {link.type}

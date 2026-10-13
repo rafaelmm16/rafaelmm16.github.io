@@ -19,6 +19,7 @@ interface ResumeCardProps {
   period: string;
   description?: string;
 }
+
 export const ResumeCard = ({
   logoUrl,
   altText,
@@ -38,73 +39,107 @@ export const ResumeCard = ({
     }
   };
 
-  return (
-    <Link
-      href={href || "#"}
-      className="block cursor-pointer"
-      onClick={handleClick}
-    >
-      <Card className="flex">
-        <div className="flex-none">
-          <Avatar className="border size-12 m-auto bg-muted-background dark:bg-foreground">
+  const hasValidLink = Boolean(
+    href &&
+      href !== "#" &&
+      href !== "https://" &&
+      href !== "http://" &&
+      href.trim() !== ""
+  );
+
+  const cardContent = (
+    <Card className="flex">
+      <div className="flex-none">
+        <Avatar className="border size-12 m-auto bg-muted-background dark:bg-foreground">
+          {logoUrl && logoUrl !== "/" ? (
             <AvatarImage
               src={logoUrl}
               alt={altText}
               className="object-contain"
             />
-            <AvatarFallback>{altText[0]}</AvatarFallback>
-          </Avatar>
-        </div>
-        <div className="flex-grow ml-4 items-center flex-col group">
-          <CardHeader>
-            <div className="flex items-center justify-between gap-x-2 text-base">
-              <h3 className="inline-flex items-center justify-center font-semibold leading-none text-xs sm:text-sm">
-                {title}
-                {badges && (
-                  <span className="inline-flex gap-x-1">
-                    {badges.map((badge, index) => (
-                      <Badge
-                        variant="secondary"
-                        className="align-middle text-xs"
-                        key={index}
-                      >
-                        {badge}
-                      </Badge>
-                    ))}
-                  </span>
-                )}
+          ) : null}
+          <AvatarFallback>{altText?.[0] || "R"}</AvatarFallback>
+        </Avatar>
+      </div>
+      <div className="flex-grow ml-4 items-center flex-col group">
+        <CardHeader>
+          <div className="flex items-center justify-between gap-x-2 text-base">
+            <h3 className="inline-flex items-center justify-center font-semibold leading-none text-xs sm:text-sm">
+              {title}
+              {badges && (
+                <span className="inline-flex gap-x-1">
+                  {badges.map((badge, index) => (
+                    <Badge
+                      variant="secondary"
+                      className="align-middle text-xs"
+                      key={index}
+                    >
+                      {badge}
+                    </Badge>
+                  ))}
+                </span>
+              )}
+              {description && (
                 <ChevronRightIcon
                   className={cn(
                     "size-4 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100",
                     isExpanded ? "rotate-90" : "rotate-0"
                   )}
                 />
-              </h3>
-              <div className="text-xs sm:text-sm tabular-nums text-muted-foreground text-right">
-                {period}
-              </div>
+              )}
+            </h3>
+            <div className="text-xs sm:text-sm tabular-nums text-muted-foreground text-right">
+              {period}
             </div>
-            {subtitle && <div className="font-sans text-xs">{subtitle}</div>}
-          </CardHeader>
-          {description && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{
-                opacity: isExpanded ? 1 : 0,
+          </div>
+          {subtitle && <div className="font-sans text-xs">{subtitle}</div>}
+        </CardHeader>
+        {description && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{
+              opacity: isExpanded ? 1 : 0,
+              height: isExpanded ? "auto" : 0,
+            }}
+            transition={{
+              duration: 0.7,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="mt-2 text-xs sm:text-sm"
+          >
+            {description}
+          </motion.div>
+        )}
+      </div>
+    </Card>
+  );
 
-                height: isExpanded ? "auto" : 0,
-              }}
-              transition={{
-                duration: 0.7,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="mt-2 text-xs sm:text-sm"
-            >
-              {description}
-            </motion.div>
-          )}
-        </div>
-      </Card>
-    </Link>
+  if (hasValidLink) {
+    const isExternal = href?.startsWith("http://") || href?.startsWith("https://");
+    return (
+      <Link
+        href={href!}
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noopener noreferrer" : undefined}
+        prefetch={false}
+        className="block cursor-pointer"
+        onClick={handleClick}
+      >
+        {cardContent}
+      </Link>
+    );
+  }
+
+  return (
+    <div
+      className={cn("block", description && "cursor-pointer")}
+      onClick={() => {
+        if (description) {
+          setIsExpanded(!isExpanded);
+        }
+      }}
+    >
+      {cardContent}
+    </div>
   );
 };

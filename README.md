@@ -7,7 +7,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5+-3178c6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
-Portfólio moderno, responsivo e interativo com **Blog** e **Painel Administrativo integrado (CMS sem backend)**, desenvolvido com Next.js 16 (Turbopack + Static Export) e hospedado gratuitamente no GitHub Pages.
+Portfólio moderno, responsivo e interativo com **Blog integrado**, desenvolvido com Next.js 16 (Turbopack + Static Export) e hospedado gratuitamente no GitHub Pages.
 
 🔗 **Acesse online:** [rafaelmm16.github.io](https://rafaelmm16.github.io/)
 
@@ -19,11 +19,6 @@ Portfólio moderno, responsivo e interativo com **Blog** e **Painel Administrati
 - **🎨 Design Moderno & Acessível:** Interface limpa construída com Tailwind CSS v4, componentes Radix UI e ícones Lucide.
 - **🌓 Suporte a Dark/Light Mode:** Alternância suave de temas claro e escuro persistida via `next-themes`.
 - **✨ Microinterações & Animações:** Efeitos e transições fluidas criadas com Framer Motion.
-- **🛠️ Painel Admin Integrado (`/admin`):**
-  - Autenticação por PIN seguro com hash criptográfico SHA-256 e Salt.
-  - Edição em tempo real de informações de perfil, experiências de trabalho, formação acadêmica, habilidades e projetos.
-  - Sincronização local (`localStorage`) e ferramentas de backup (exportar e importar JSON).
-  - **Publicação Direta via GitHub API:** Permite salvar alterações e commitar diretamente no repositório com um clique (usando Personal Access Token), acionando o deploy contínuo automaticamente.
 - **📝 Blog com Suporte a Markdown/MDX:** Syntax highlighting elegante de códigos (Shiki + Rehype Pretty Code) nos modos claro e escuro.
 - **🚀 CI/CD Automatizado:** Pipeline no GitHub Actions que compila e publica automaticamente a branch `main` no GitHub Pages.
 
@@ -51,17 +46,14 @@ Portfólio moderno, responsivo e interativo com **Blog** e **Painel Administrati
 ├── public/                      # Imagens estáticas, logos e assets
 ├── src/
 │   ├── app/
-│   │   ├── admin/page.tsx      # Painel de controle / CMS do portfólio
 │   │   ├── blog/               # Rotas e páginas do blog
 │   │   ├── globals.css         # Configurações do Tailwind CSS v4 e temas
 │   │   ├── layout.tsx          # Layout raiz da aplicação
 │   │   └── page.tsx            # Página inicial (Portfólio)
 │   ├── components/             # Componentes de UI e blocos reutilizáveis
-│   ├── context/
-│   │   └── portfolio-context.tsx # Gerenciamento de estado, admin e integração GitHub
 │   ├── data/
-│   │   ├── initial-data.json   # Dados padrão do portfólio (experiências, projetos, etc.)
-│   │   └── resume.tsx          # Configurações e exportações de dados
+│   │   ├── blog.ts             # Leitor e utilitários de posts MDX
+│   │   └── resume.tsx          # Fonte única de dados do portfólio (experiências, projetos, etc.)
 │   └── lib/                    # Funções utilitárias (cn, formatação, etc.)
 ├── next.config.mjs             # Configurações do Next.js (Static Export)
 └── package.json
@@ -96,22 +88,32 @@ Portfólio moderno, responsivo e interativo com **Blog** e **Painel Administrati
 
 4. **Acesse no navegador:**
    - Portfólio: [http://localhost:3000](http://localhost:3000)
-   - Painel Admin: [http://localhost:3000/admin](http://localhost:3000/admin)
 
 ---
 
-## 🔒 Painel Administrativo (`/admin`)
+## ✏️ Como Personalizar os Dados
 
-O painel administrativo permite atualizar qualquer conteúdo exibido no site diretamente pelo navegador:
+### Dados do Portfólio
 
-1. Acesse `/admin`.
-2. Insira o **PIN de Acesso** (o PIN inicial padrão é `1602`).
-3. Modifique suas informações nas abas (Perfil, Experiência, Educação, Habilidades, Projetos).
-4. **Opções para salvar:**
-   - **Salvar Localmente:** Persiste as alterações no `localStorage` do seu navegador.
-   - **Exportar JSON:** Baixa uma cópia de backup do arquivo de dados.
-   - **Publicar no GitHub:** Configure um GitHub Personal Access Token (PAT) com escopo `repo` para commitar as alterações diretamente em `src/data/initial-data.json`. Assim que o commit for realizado, a GitHub Action de deploy atualizará o site em produção automaticamente.
-5. No painel, você também pode alterar seu PIN de segurança a qualquer momento.
+Todas as informações pessoais, experiências, formações acadêmicas, habilidades, projetos e links de redes sociais estão centralizadas em um único arquivo:
+- [src/data/resume.tsx](src/data/resume.tsx)
+
+Basta editar as propriedades do objeto `DATA` para refletir suas informações. As mudanças serão refletidas automaticamente no site.
+
+### Postagens do Blog
+
+Para criar ou editar artigos do blog:
+1. Adicione um novo arquivo `.mdx` na pasta `content/`.
+2. Inclua o frontmatter no início do arquivo:
+   ```markdown
+   ---
+   title: "Título do Artigo"
+   publishedAt: "2026-10-09"
+   summary: "Breve resumo do artigo"
+   ---
+
+   Conteúdo do post em Markdown...
+   ```
 
 ---
 
