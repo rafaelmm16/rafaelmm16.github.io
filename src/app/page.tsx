@@ -16,7 +16,7 @@ const BLUR_FADE_DELAY = 0.04;
 
 export default async function Page() {
   const firstName = DATA.name ? DATA.name.split(" ")[0] : "Rafael";
-  const projects = await getGithubProjects();
+  const projects = await getGithubProjects("rafaelmm16", 10);
 
   return (
     <main className="max-w-2xl mx-auto py-12 sm:py-24 px-6 flex flex-col min-h-dvh space-y-10">

@@ -8,46 +8,54 @@ export const DATA = {
   location: "São Mateus, ES, 29930-590",
   locationLink: "https://www.google.com/maps/place/São+Mateus,+ES",
   description:
-    "Técnico em Informática com foco em Desenvolvimento Web, React Native, TypeScript e Suporte/Infraestrutura de TI. Formando em Sistemas de Informação.",
+    "Técnico em Informática com foco em Desenvolvimento Web e Mobile (React, Next.js, React Native, TypeScript) e Suporte/Infraestrutura de TI. Formando em Sistemas de Informação.",
   summary:
-    "Durante minha trajetória, atuei em diferentes frentes: desde o suporte técnico direto no Polo UAB São Mateus até a coordenação de núcleo na Prefeitura, onde desenvolvi habilidades de liderança e organização. No IFES, combinei atividades técnicas, como configuração de redes e sistemas, com a responsabilidade administrativa de gerir processos do setor de TI, oferecendo um atendimento de qualidade aos usuários.",
+    "Atuo no desenvolvimento de aplicações **Web** e **Mobile** modernas, unindo engenharia de software no ecossistema TypeScript, React, Next.js e React Native (Expo) a uma base sólida em **Infraestrutura, Redes e Suporte de TI**. Durante minha trajetória, passei pelo suporte técnico no Polo UAB São Mateus, coordenação de núcleo na Prefeitura Municipal, administração de redes e Active Directory no IFES (onde também desenvolvi ferramentas de automação e monitoramento em Python/PowerShell) e atuação administrativa na Plena Benefícios.",
   avatarUrl: "/me.png",
   skillsByCategory: [
     {
-      category: "Desenvolvimento & Programação",
+      category: "Front-end & Mobile",
       skills: [
-        "Desenvolvimento Web",
-        "React Native",
         "TypeScript",
         "JavaScript",
         "React",
         "Next.js",
-        "Node.js",
-        "Python",
-        "HTML/CSS",
+        "React Native",
+        "Expo",
         "Tailwind CSS",
+        "NativeWind",
+        "TanStack Query",
+        "Zustand",
+        "HTML/CSS",
       ],
     },
     {
-      category: "Infraestrutura & Suporte",
+      category: "Back-end, Automação & Dados",
       skills: [
-        "Suporte Técnico",
-        "Manutenção e Suporte de Computadores",
-        "Rede de Computadores",
-        "Active Directory (AD)",
-        "Infraestrutura TI",
-        "Configuração de Redes e Sistemas",
-      ],
-    },
-    {
-      category: "Ferramentas & Competências",
-      skills: [
-        "Git",
-        "Github",
+        "Node.js",
+        "Express",
+        "Python",
+        "Java",
+        "C / C++",
+        "Go",
+        "MongoDB",
         "SQLite",
         "TypeORM",
-        "Resolução de Problemas",
-        "Trabalho em equipe",
+        "Zod",
+        "PowerShell / WinRM",
+      ],
+    },
+    {
+      category: "Infraestrutura, Ferramentas & Competências",
+      skills: [
+        "Active Directory (AD)",
+        "Rede de Computadores",
+        "Infraestrutura de TI",
+        "Suporte Técnico",
+        "Manutenção de Computadores",
+        "Git & GitHub",
+        "Linux",
+        "Figma",
         "Liderança e Organização",
       ],
     },
@@ -103,7 +111,7 @@ export const DATA = {
       start: "05/2024",
       end: "05/2026",
       description:
-        "Manutenção de computadores, instalação de rede, controle de Active Directory (AD), suporte a usuários e suporte técnico.",
+        "Manutenção de computadores, instalação de rede, controle de Active Directory (AD), automação de monitoramento de máquinas e suporte técnico aos usuários.",
     },
     {
       company: "Polo UAB",
@@ -154,7 +162,8 @@ export const DATA = {
     {
       school: "E.E.E.F.M. Antonio dos Santos Neves",
       href: "",
-      degree: "Ensino Médio e Integral em Montagem e Manutenção de Computadores pelo IFES",
+      degree:
+        "Ensino Médio e Integral em Montagem e Manutenção de Computadores pelo IFES",
       logoUrl: "/sao-mateus-vertical-cor.png",
       start: "2012",
       end: "2015",
@@ -162,17 +171,27 @@ export const DATA = {
   ],
   certificates: [
     {
-      title: "Next Level Week (NLW) - Edições 1 e 2",
+      title: "React na Prática & Next Level Week (Unite / Expert)",
       issuer: "Rocketseat",
       dates: "2024",
       location: "Online",
       description:
-        "Desenvolvimento de aplicações completas no ecossistema TypeScript, Node.js e React.",
+        "Desenvolvimento de aplicações Web e Mobile com React, React Native (Expo), TypeScript, Tailwind CSS, NativeWind, TanStack React Query e Zod.",
       image: "",
       links: [
         {
-          title: "GitHub",
-          href: "https://github.com/rafaelmm16/NLW",
+          title: "React na Prática",
+          href: "https://github.com/rafaelmm16/React-na-Pratica",
+          icon: <Icons.github className="size-3" />,
+        },
+        {
+          title: "NLW Unite",
+          href: "https://github.com/rafaelmm16/NLW-Unite",
+          icon: <Icons.github className="size-3" />,
+        },
+        {
+          title: "NLW Expert RN",
+          href: "https://github.com/rafaelmm16/NLW-Expert_React-Native",
           icon: <Icons.github className="size-3" />,
         },
       ],
@@ -183,12 +202,33 @@ export const DATA = {
       dates: "2023",
       location: "Online",
       description:
-        "Fundamentos de desenvolvimento Java, programação orientada a objetos e boas práticas de código.",
+        "Fundamentos de desenvolvimento Java, programação orientada a objetos, APIs e boas práticas de código.",
       image: "",
       links: [
         {
           title: "Repositório",
           href: "https://github.com/rafaelmm16/Curso-de-Java",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+    },
+    {
+      title: "Next Level Week (NLW) - Edições 1 e 2",
+      issuer: "Rocketseat",
+      dates: "2020",
+      location: "Online",
+      description:
+        "Imersão prática em desenvolvimento Full-Stack com HTML, CSS, JavaScript, Node.js e SQLite.",
+      image: "",
+      links: [
+        {
+          title: "NLW #1",
+          href: "https://github.com/rafaelmm16/NLW",
+          icon: <Icons.github className="size-3" />,
+        },
+        {
+          title: "NLW #2",
+          href: "https://github.com/rafaelmm16/NLW-2",
           icon: <Icons.github className="size-3" />,
         },
       ],
@@ -206,48 +246,41 @@ export const DATA = {
   ],
   projects: [
     {
-      title: "Repositório de Estudo sobre HTML, CSS e JavaScript",
-      href: "https://github.com/rafaelmm16/Web-development",
-      dates: "Jan 2024 - Fev 2024",
+      title: "Florescer — Controle de Hábitos",
+      href: "https://github.com/rafaelmm16/Florescer",
+      dates: "Out 2026",
       active: true,
       description:
-        "Um repositório contendo materiais de estudo relacionados a HTML, CSS e JavaScript. Contendo LPs, Websites e mais.",
+        "Aplicativo mobile offline-first para acompanhamento de hábitos diários, com sistema de ofensivas (streaks), heatmap de constância estilo GitHub, notificações locais e sincronização em nuvem.",
       technologies: [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "Tailwind",
+        "React Native",
+        "Expo",
+        "TypeScript",
+        "Zustand",
+        "Node.js",
+        "MongoDB",
       ],
       links: [
         {
-          type: "Website",
-          href: "https://github.com/rafaelmm16/Web-development",
-          icon: <Icons.globe className="size-3" />,
+          type: "GitHub",
+          href: "https://github.com/rafaelmm16/Florescer",
+          icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "/LP.png",
+      image: "",
       video: "",
     },
     {
-      title: "Cook-App",
+      title: "Cook-App — Sugestão de Receitas",
       href: "https://github.com/rafaelmm16/Cook-App",
       dates: "Mar 2024",
       active: true,
       description:
-        "Aplicativo que sugere receitas baseadas nos ingredientes selecionados.",
-      technologies: [
-        "TypeScript",
-        "JavaScript",
-        "Expo",
-      ],
+        "Aplicativo mobile que sugere receitas personalizadas com base nos ingredientes selecionados pelo usuário.",
+      technologies: ["React Native", "Expo", "TypeScript"],
       links: [
         {
-          type: "APP",
-          href: "https://github.com/rafaelmm16/Cook-App",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "Source",
+          type: "GitHub",
           href: "https://github.com/rafaelmm16/Cook-App",
           icon: <Icons.github className="size-3" />,
         },
@@ -256,29 +289,145 @@ export const DATA = {
       video: "/Cook-App.mp4",
     },
     {
-      title: "SGBus",
+      title: "Idlewatch Agent Server",
+      href: "https://github.com/rafaelmm16/Idlewatch-Agent-Server",
+      dates: "Mar 2026",
+      active: true,
+      description:
+        "Sistema de monitoramento remoto em tempo real que coleta métricas de uso de CPU, memória, processos e tempo ocioso de computadores integrados ao Active Directory (AD) via WinRM/PowerShell, exportando diagnósticos para o Google Sheets.",
+      technologies: [
+        "Python",
+        "Active Directory",
+        "PowerShell",
+        "WinRM",
+        "Google Sheets API",
+      ],
+      links: [
+        {
+          type: "GitHub",
+          href: "https://github.com/rafaelmm16/Idlewatch-Agent-Server",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
+    },
+    {
+      title: "Spotify Cover",
+      href: "https://rafaelmm16.github.io/Spotify-Cover/",
+      dates: "Out 2026",
+      active: true,
+      description:
+        "Interface web inspirada no Spotify com reprodutor de áudio interativo via Web Audio API, componentização moderna e layout responsivo.",
+      technologies: ["React", "TypeScript", "Tailwind CSS", "Web Audio API"],
+      links: [
+        {
+          type: "Website",
+          href: "https://rafaelmm16.github.io/Spotify-Cover/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "GitHub",
+          href: "https://github.com/rafaelmm16/Spotify-Cover",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
+    },
+    {
+      title: "Recicla Capixaba — Jogos Educativos",
+      href: "https://rafaelmm16.github.io/Projeto-Integrador-VIII-B/",
+      dates: "Out 2025",
+      active: true,
+      description:
+        "Plataforma web interativa de jogos educativos sobre reciclagem e sustentabilidade (classificação de resíduos, quiz ambiental e ranking de pontuação).",
+      technologies: ["React", "TypeScript", "Tailwind CSS"],
+      links: [
+        {
+          type: "Website",
+          href: "https://rafaelmm16.github.io/Projeto-Integrador-VIII-B/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "GitHub",
+          href: "https://github.com/rafaelmm16/Projeto-Integrador-VIII-B",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
+    },
+    {
+      title: "Gerenciador de Tags — React na Prática",
+      href: "https://rafaelmm16.github.io/React-na-Pratica/",
+      dates: "Nov 2026",
+      active: true,
+      description:
+        "Aplicação web para gerenciamento, filtragem e paginação de tags de vídeo com estado sincronizado na URL (Search Params) e cache assíncrono.",
+      technologies: [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "TanStack Query",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://rafaelmm16.github.io/React-na-Pratica/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "GitHub",
+          href: "https://github.com/rafaelmm16/React-na-Pratica",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
+    },
+    {
+      title: "Delivery Web App (IHC)",
+      href: "https://rafaelmm16.github.io/Interface-Humano-Computador/",
+      dates: "Out 2025",
+      active: true,
+      description:
+        "Protótipo funcional de uma plataforma de delivery de comida com autenticação, busca por categorias, carrinho de compras e fluxo completo de checkout.",
+      technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
+      links: [
+        {
+          type: "Website",
+          href: "https://rafaelmm16.github.io/Interface-Humano-Computador/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "GitHub",
+          href: "https://github.com/rafaelmm16/Interface-Humano-Computador",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
+    },
+    {
+      title: "SGBus — Mobilidade Universitária",
       href: "https://github.com/rafaelmm16/Projeto-de-Sistemas",
       dates: "Jan 2023",
       active: true,
       description:
-        "O projeto foi pensado para facilitar a vida do estudante, onde no app pode encontrar os pontos e rotas de ônibus assim como fazer a recarga do seu cartão de passagem.",
+        "Aplicativo pensado para facilitar a rotina do estudante na consulta de pontos e rotas de ônibus, além de recarga do cartão de passagem.",
       technologies: [
-        "Node.js",
-        "TypeScript",
+        "React Native",
         "Expo",
-        "JavaScript",
-        "SQLite",
+        "TypeScript",
+        "Node.js",
         "TypeORM",
-        "Express",
+        "SQLite",
       ],
       links: [
         {
-          type: "APP",
-          href: "https://github.com/rafaelmm16/Projeto-de-Sistemas",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "Source",
+          type: "GitHub",
           href: "https://github.com/rafaelmm16/Projeto-de-Sistemas",
           icon: <Icons.github className="size-3" />,
         },
@@ -287,22 +436,41 @@ export const DATA = {
       video: "",
     },
     {
-      title: "Projeto final da disciplina de Sistemas Multimídia",
-      href: "https://github.com/rafaelmm16/Projeto-Final_SM",
-      dates: "Fev 2022 - Mar 2022",
+      title: "Web Development — Landing Pages & UI",
+      href: "https://rafaelmm16.github.io/Web-Development/",
+      dates: "Out 2026",
       active: true,
       description:
-        "Jogo estilo Flappy Bird desenvolvido na plataforma Godot.",
-      technologies: [
-        "Godot",
-        "Java",
-        "GDScript",
-      ],
+        "Coleção de páginas web, landing pages e experimentos práticos desenvolvidos com HTML, CSS, JavaScript e Bootstrap.",
+      technologies: ["HTML", "CSS", "JavaScript", "Bootstrap"],
       links: [
         {
           type: "Website",
-          href: "https://github.com/rafaelmm16/Projeto-Final_SM",
+          href: "https://rafaelmm16.github.io/Web-Development/",
           icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "GitHub",
+          href: "https://github.com/rafaelmm16/Web-Development",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/LP.png",
+      video: "",
+    },
+    {
+      title: "Flappy Bird Clone (Godot)",
+      href: "https://github.com/rafaelmm16/Projeto-Final-SM",
+      dates: "Mar 2022",
+      active: true,
+      description:
+        "Jogo 2D estilo Flappy Bird desenvolvido na engine Godot como projeto final da disciplina de Sistemas Multimídia.",
+      technologies: ["Godot", "GDScript"],
+      links: [
+        {
+          type: "GitHub",
+          href: "https://github.com/rafaelmm16/Projeto-Final-SM",
+          icon: <Icons.github className="size-3" />,
         },
       ],
       image: "/Portfolio_page-0010.jpg",

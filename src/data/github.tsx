@@ -47,13 +47,35 @@ function formatDate(dateString: string): string {
   }
 }
 
+function findCuratedProject(repo: GitHubRepo) {
+  const repoName = repo.name.toLowerCase();
+  const repoUrl = repo.html_url.toLowerCase();
+  const homepageUrl = repo.homepage?.trim().toLowerCase();
+
+  return DATA.projects.find((p) => {
+    const pHref = p.href.toLowerCase();
+    if (
+      pHref === repoUrl ||
+      pHref.endsWith(`/${repoName}`) ||
+      (homepageUrl && pHref === homepageUrl) ||
+      p.title.toLowerCase() === repoName
+    ) {
+      return true;
+    }
+    return p.links.some((link) => {
+      const lHref = link.href.toLowerCase();
+      return lHref === repoUrl || lHref.endsWith(`/${repoName}`);
+    });
+  });
+}
+
 export async function getGithubProjects(
   username: string = "rafaelmm16",
   limit: number = 8
 ): Promise<ProjectItem[]> {
   try {
     const res = await fetch(
-      `https://api.github.com/users/${username}/repos?sort=pushed&per_page=30`,
+      `https://api.github.com/users/${username}/repos?sort=pushed&per_page=100`,
       {
         headers: {
           Accept: "application/vnd.github.v3+json",
@@ -66,77 +88,105 @@ export async function getGithubProjects(
       console.warn(
         `GitHub API retornou status ${res.status}. Usando projetos estáticos de reserva.`
       );
-      return [...DATA.projects];
+      return DATA.projects.slice(0, limit);
     }
 
     const repos: GitHubRepo[] = await res.json();
 
-    // Filtra repositórios que não devem aparecer (forks, perfil e o próprio portfólio)
+    // Filtra repositórios que não devem aparecer na vitrine de projetos
+    // (forks, repo de perfil, próprio portfólio e exercícios que já estão na seção de Certificados)
     const ignoredRepos = new Set([
       username.toLowerCase(),
       `${username.toLowerCase()}.github.io`,
+      "nlw",
+      "nlw-2",
+      "nlw-unite",
+      "nlw-expert_react-native",
+      "curso-de-java",
+      "desenvolvimento-para-dispositivo-moveis",
     ]);
 
-    const filtered = repos
-      .filter((repo) => !repo.fork && !ignoredRepos.has(repo.name.toLowerCase()))
-      .slice(0, limit);
+    const candidateRepos = repos.filter(
+      (repo) => !repo.fork && !ignoredRepos.has(repo.name.toLowerCase())
+    );
 
-    return filtered.map((repo) => {
-      // Verifica se há dados pré-existentes em DATA.projects para reaproveitar mídias (imagem/vídeo)
-      const existingMatch = DATA.projects.find((p) => {
-        const repoName = repo.name.toLowerCase();
-        return (
-          p.href.toLowerCase().endsWith(`/${repoName}`) ||
-          p.title.toLowerCase() === repoName
-        );
-      });
+    const mapped = candidateRepos.map((repo) => {
+      const existingMatch = findCuratedProject(repo);
+      const curatedIndex = existingMatch
+        ? DATA.projects.indexOf(existingMatch)
+        : -1;
 
-      // Tags combinando linguagem principal e tópicos do GitHub
-      const rawTags = [repo.language, ...(repo.topics || [])].filter(
-        Boolean
-      ) as string[];
-      const technologies = Array.from(new Set(rawTags));
+      const rawTags = [repo.language, ...(repo.topics || [])]
+        .filter(Boolean)
+        .map((t) => (t === "tyepscript" ? "TypeScript" : t!));
+      const githubTechnologies = Array.from(new Set(rawTags));
 
       const links: { icon: React.ReactNode; type: string; href: string }[] = [];
 
-      // Link para o código no GitHub
+      if (repo.homepage && repo.homepage.trim().startsWith("http")) {
+        links.push({
+          type: "Website",
+          href: repo.homepage.trim(),
+          icon: <Icons.globe className="size-3" />,
+        });
+      }
+
       links.push({
         type: "GitHub",
         href: repo.html_url,
         icon: <Icons.github className="size-3" />,
       });
 
-      // Se tiver site/deploy no ar (homepage)
-      if (repo.homepage && repo.homepage.trim().startsWith("http")) {
-        links.push({
-          type: "Website",
-          href: repo.homepage,
-          icon: <Icons.globe className="size-3" />,
-        });
-      }
-
       const formattedTitle = repo.name.replace(/[-_]/g, " ");
 
-      return {
+      // Prioriza as tecnologias curadas em DATA.projects (que são mais completas),
+      // mesclando com os tópicos do GitHub se necessário
+      const technologies =
+        existingMatch && existingMatch.technologies.length > 0
+          ? existingMatch.technologies
+          : githubTechnologies.length > 0
+            ? githubTechnologies
+            : ["GitHub"];
+
+      const item: ProjectItem = {
         title: existingMatch?.title || formattedTitle,
-        href: repo.homepage && repo.homepage.startsWith("http") ? repo.homepage : repo.html_url,
+        href:
+          repo.homepage && repo.homepage.trim().startsWith("http")
+            ? repo.homepage.trim()
+            : existingMatch?.href || repo.html_url,
         dates: formatDate(repo.pushed_at),
         active: true,
         description:
           existingMatch?.description ||
           repo.description ||
           "Projeto desenvolvido e disponível no GitHub.",
-        technologies:
-          technologies.length > 0
-            ? technologies
-            : existingMatch?.technologies || ["GitHub"],
+        technologies,
         links,
         image: existingMatch?.image || "",
         video: existingMatch?.video || "",
       };
+
+      return {
+        item,
+        curatedIndex,
+        pushedAt: new Date(repo.pushed_at).getTime(),
+      };
     });
+
+    // Ordena priorizando os projetos em destaque (na ordem definida em DATA.projects)
+    // seguidos pelos demais repositórios mais recentes do GitHub
+    mapped.sort((a, b) => {
+      if (a.curatedIndex !== -1 && b.curatedIndex !== -1) {
+        return a.curatedIndex - b.curatedIndex;
+      }
+      if (a.curatedIndex !== -1) return -1;
+      if (b.curatedIndex !== -1) return 1;
+      return b.pushedAt - a.pushedAt;
+    });
+
+    return mapped.slice(0, limit).map((entry) => entry.item);
   } catch (error) {
     console.error("Erro ao buscar projetos do GitHub:", error);
-    return [...DATA.projects];
+    return DATA.projects.slice(0, limit);
   }
 }
