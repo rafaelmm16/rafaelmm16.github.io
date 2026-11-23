@@ -12,21 +12,6 @@ export const DATA = {
   summary:
     "Durante minha trajetória, atuei em diferentes frentes: desde o suporte técnico direto no Polo UAB São Mateus até a coordenação de núcleo na Prefeitura, onde desenvolvi habilidades de liderança e organização. No IFES, combinei atividades técnicas, como configuração de redes e sistemas, com a responsabilidade administrativa de gerir processos do setor de TI, oferecendo um atendimento de qualidade aos usuários.",
   avatarUrl: "/me.png",
-  skills: [
-    "Desenvolvimento Web",
-    "React Native",
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Node.js",
-    "Active Directory (AD)",
-    "Rede de Computadores",
-    "Suporte Técnico",
-    "Infraestrutura TI",
-    "Github",
-    "Resolução de Problemas",
-    "Trabalho em equipe",
-  ],
   skillsByCategory: [
     {
       category: "Desenvolvimento & Programação",
@@ -104,7 +89,7 @@ export const DATA = {
       title: "Auxiliar Administrativo",
       logoUrl: "/plena.png",
       start: "05/2026",
-      end: "Present",
+      end: "Atualmente",
       description:
         "Atuação em rotinas administrativas, elaboração e organização de documentos, processos internos e suporte operacional.",
     },
@@ -138,7 +123,7 @@ export const DATA = {
       href: "https://www.saomateus.es.gov.br",
       location: "São Mateus, ES",
       title: "Coordenador de Núcleo",
-      logoUrl: "/05 - Ciência, Tecnologia, Inovação, Educação Profissional e Trabalho - Fonte Preta RGB.png",
+      logoUrl: "/prefeitura-sao-mateus.png",
       start: "01/2022",
       end: "05/2022",
       description:
@@ -150,7 +135,7 @@ export const DATA = {
       href: "https://www.saomateus.es.gov.br",
       location: "São Mateus, ES",
       title: "Estagiário de TI",
-      logoUrl: "/05 - Ciência, Tecnologia, Inovação, Educação Profissional e Trabalho - Fonte Preta RGB.png",
+      logoUrl: "/prefeitura-sao-mateus.png",
       start: "01/2021",
       end: "01/2022",
       description:
@@ -170,7 +155,7 @@ export const DATA = {
       school: "E.E.E.F.M. Antonio dos Santos Neves",
       href: "",
       degree: "Ensino Médio e Integral em Montagem e Manutenção de Computadores pelo IFES",
-      logoUrl: "/ib.png",
+      logoUrl: "/sao-mateus-vertical-cor.png",
       start: "2012",
       end: "2015",
     },
@@ -215,7 +200,7 @@ export const DATA = {
       location: "São Mateus, ES",
       description:
         "Formação técnica em arquitetura de computadores, redes locais, manutenção de hardware e suporte ao usuário.",
-      image: "/ib.png",
+      image: "/sao-mateus-vertical-cor.png",
       links: [],
     },
   ],
@@ -223,7 +208,7 @@ export const DATA = {
     {
       title: "Repositório de Estudo sobre HTML, CSS e JavaScript",
       href: "https://github.com/rafaelmm16/Web-development",
-      dates: "Jan 2024 - Feb 2024",
+      dates: "Jan 2024 - Fev 2024",
       active: true,
       description:
         "Um repositório contendo materiais de estudo relacionados a HTML, CSS e JavaScript. Contendo LPs, Websites e mais.",
@@ -246,13 +231,13 @@ export const DATA = {
     {
       title: "Cook-App",
       href: "https://github.com/rafaelmm16/Cook-App",
-      dates: "March 2024",
+      dates: "Mar 2024",
       active: true,
       description:
         "Aplicativo que sugere receitas baseadas nos ingredientes selecionados.",
       technologies: [
-        "Typescript",
-        "javaScript",
+        "TypeScript",
+        "JavaScript",
         "Expo",
       ],
       links: [
@@ -273,16 +258,16 @@ export const DATA = {
     {
       title: "SGBus",
       href: "https://github.com/rafaelmm16/Projeto-de-Sistemas",
-      dates: "January 2023 - January 2023",
+      dates: "Jan 2023",
       active: true,
       description:
         "O projeto foi pensado para facilitar a vida do estudante, onde no app pode encontrar os pontos e rotas de ônibus assim como fazer a recarga do seu cartão de passagem.",
       technologies: [
         "Node.js",
-        "Typescript",
+        "TypeScript",
         "Expo",
-        "Javascript",
-        "Sqlite",
+        "JavaScript",
+        "SQLite",
         "TypeORM",
         "Express",
       ],
@@ -304,7 +289,7 @@ export const DATA = {
     {
       title: "Projeto final da disciplina de Sistemas Multimídia",
       href: "https://github.com/rafaelmm16/Projeto-Final_SM",
-      dates: "February 2022 - March 2022",
+      dates: "Fev 2022 - Mar 2022",
       active: true,
       description:
         "Jogo estilo Flappy Bird desenvolvido na plataforma Godot.",

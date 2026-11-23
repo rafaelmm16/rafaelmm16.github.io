@@ -132,9 +132,18 @@ export const ResumeCard = ({
 
   return (
     <div
+      role={description ? "button" : undefined}
+      tabIndex={description ? 0 : undefined}
+      aria-expanded={description ? isExpanded : undefined}
       className={cn("block", description && "cursor-pointer")}
       onClick={() => {
         if (description) {
+          setIsExpanded(!isExpanded);
+        }
+      }}
+      onKeyDown={(e) => {
+        if (description && (e.key === "Enter" || e.key === " ")) {
+          e.preventDefault();
           setIsExpanded(!isExpanded);
         }
       }}

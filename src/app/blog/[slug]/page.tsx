@@ -26,7 +26,7 @@ export async function generateMetadata({
     summary: description,
     image,
   } = post.metadata;
-  let ogImage = image ? `${DATA.url}${image}` : `${DATA.url}/og?title=${title}`;
+  let ogImage = image ? `${DATA.url}${image}` : `${DATA.url}${DATA.avatarUrl}`;
 
   return {
     title,
@@ -81,7 +81,7 @@ export default async function Blog({
             description: post.metadata.summary,
             image: post.metadata.image
               ? `${DATA.url}${post.metadata.image}`
-              : `${DATA.url}/og?title=${post.metadata.title}`,
+              : `${DATA.url}${DATA.avatarUrl}`,
             url: `${DATA.url}/blog/${post.slug}`,
             author: {
               "@type": "Person",

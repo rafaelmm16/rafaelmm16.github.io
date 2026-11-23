@@ -93,7 +93,7 @@ export default async function Page() {
                 subtitle={work.title}
                 href={work.href}
                 badges={work.badges}
-                period={`${work.start} - ${work.end ?? "Present"}`}
+                period={`${work.start} - ${work.end ?? "Atualmente"}`}
                 description={work.description}
               />
             </BlurFade>
@@ -153,36 +153,23 @@ export default async function Page() {
             <h2 className="text-xl font-bold">Habilidades</h2>
           </BlurFade>
           <div className="flex flex-col gap-y-3">
-            {DATA.skillsByCategory ? (
-              DATA.skillsByCategory.map((categoryGroup, catId) => (
-                <BlurFade
-                  key={categoryGroup.category}
-                  delay={BLUR_FADE_DELAY * 11 + catId * 0.05}
-                >
-                  <div className="space-y-1.5">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                      {categoryGroup.category}
-                    </span>
-                    <div className="flex flex-wrap gap-1">
-                      {categoryGroup.skills.map((skill) => (
-                        <Badge key={skill}>{skill}</Badge>
-                      ))}
-                    </div>
+            {DATA.skillsByCategory.map((categoryGroup, catId) => (
+              <BlurFade
+                key={categoryGroup.category}
+                delay={BLUR_FADE_DELAY * 11 + catId * 0.05}
+              >
+                <div className="space-y-1.5">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                    {categoryGroup.category}
+                  </span>
+                  <div className="flex flex-wrap gap-1">
+                    {categoryGroup.skills.map((skill) => (
+                      <Badge key={skill}>{skill}</Badge>
+                    ))}
                   </div>
-                </BlurFade>
-              ))
-            ) : (
-              <div className="flex flex-wrap gap-1">
-                {DATA.skills?.map((skill, id) => (
-                  <BlurFade
-                    key={`${skill}-${id}`}
-                    delay={BLUR_FADE_DELAY * 11 + id * 0.05}
-                  >
-                    <Badge key={`${skill}-${id}`}>{skill}</Badge>
-                  </BlurFade>
-                ))}
-              </div>
-            )}
+                </div>
+              </BlurFade>
+            ))}
           </div>
         </div>
       </section>
