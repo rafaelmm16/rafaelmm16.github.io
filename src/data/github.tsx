@@ -12,6 +12,7 @@ export interface GitHubRepo {
   language: string | null;
   topics?: string[];
   fork: boolean;
+  archived: boolean;
   stargazers_count: number;
   forks_count: number;
   pushed_at: string;
@@ -94,20 +95,17 @@ export async function getGithubProjects(
     const repos: GitHubRepo[] = await res.json();
 
     // Filtra repositórios que não devem aparecer na vitrine de projetos
-    // (forks, repo de perfil, próprio portfólio e exercícios que já estão na seção de Certificados)
+    // (forks, arquivados, repo de perfil e próprio portfólio)
     const ignoredRepos = new Set([
       username.toLowerCase(),
       `${username.toLowerCase()}.github.io`,
-      "nlw",
-      "nlw-2",
-      "nlw-unite",
-      "nlw-expert_react-native",
-      "curso-de-java",
-      "desenvolvimento-para-dispositivo-moveis",
     ]);
 
     const candidateRepos = repos.filter(
-      (repo) => !repo.fork && !ignoredRepos.has(repo.name.toLowerCase())
+      (repo) =>
+        !repo.fork &&
+        !repo.archived &&
+        !ignoredRepos.has(repo.name.toLowerCase())
     );
 
     const mapped = candidateRepos.map((repo) => {

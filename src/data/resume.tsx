@@ -181,17 +181,17 @@ export const DATA = {
       links: [
         {
           title: "React na Prática",
-          href: "https://github.com/rafaelmm16/React-na-Pratica",
+          href: "https://github.com/rafaelmm16/Rocketseat/tree/main/projects/React-na-Pratica",
           icon: <Icons.github className="size-3" />,
         },
         {
           title: "NLW Unite",
-          href: "https://github.com/rafaelmm16/NLW-Unite",
+          href: "https://github.com/rafaelmm16/Rocketseat/tree/main/projects/NLW-Unite",
           icon: <Icons.github className="size-3" />,
         },
         {
           title: "NLW Expert RN",
-          href: "https://github.com/rafaelmm16/NLW-Expert_React-Native",
+          href: "https://github.com/rafaelmm16/Rocketseat/tree/main/projects/NLW-Expert_React-Native",
           icon: <Icons.github className="size-3" />,
         },
       ],
@@ -207,7 +207,7 @@ export const DATA = {
       links: [
         {
           title: "Repositório",
-          href: "https://github.com/rafaelmm16/Curso-de-Java",
+          href: "https://github.com/rafaelmm16/Rocketseat/tree/main/projects/Curso-de-Java",
           icon: <Icons.github className="size-3" />,
         },
       ],
@@ -223,12 +223,12 @@ export const DATA = {
       links: [
         {
           title: "NLW #1",
-          href: "https://github.com/rafaelmm16/NLW",
+          href: "https://github.com/rafaelmm16/Rocketseat/tree/main/projects/NLW",
           icon: <Icons.github className="size-3" />,
         },
         {
           title: "NLW #2",
-          href: "https://github.com/rafaelmm16/NLW-2",
+          href: "https://github.com/rafaelmm16/Rocketseat/tree/main/projects/NLW-2",
           icon: <Icons.github className="size-3" />,
         },
       ],
@@ -245,6 +245,66 @@ export const DATA = {
     },
   ],
   projects: [
+    {
+      title: "Rocketseat Hub — Portfólio Unificado",
+      href: "https://rafaelmm16.github.io/Rocketseat/",
+      dates: "Nov 2026",
+      active: true,
+      description:
+        "Monorepositório e portal unificado reunindo 8 projetos de cursos e eventos da Rocketseat: pass.in, Cook App, My Goals, nivo.video, Orders, To-Do List API, Proffy e Ecoleta.",
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "React Native",
+        "Tailwind CSS",
+        "Node.js",
+        "Java",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://rafaelmm16.github.io/Rocketseat/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "GitHub",
+          href: "https://github.com/rafaelmm16/Rocketseat",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
+    },
+    {
+      title: "College — Disciplinas da Faculdade",
+      href: "https://rafaelmm16.github.io/College/",
+      dates: "Nov 2026",
+      active: true,
+      description:
+        "Monorepositório e vitrine interativa reunindo códigos e projetos de 19 disciplinas da graduação em Sistemas de Informação, incluindo SGBus, Recicla Capixaba, Delivery Web App e jogos em Godot.",
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "C / C++",
+        "Python",
+        "Java",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://rafaelmm16.github.io/College/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "GitHub",
+          href: "https://github.com/rafaelmm16/College",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
+    },
     {
       title: "Florescer — Controle de Hábitos",
       href: "https://github.com/rafaelmm16/Florescer",
@@ -271,24 +331,6 @@ export const DATA = {
       video: "",
     },
     {
-      title: "Cook-App — Sugestão de Receitas",
-      href: "https://github.com/rafaelmm16/Cook-App",
-      dates: "Mar 2024",
-      active: true,
-      description:
-        "Aplicativo mobile que sugere receitas personalizadas com base nos ingredientes selecionados pelo usuário.",
-      technologies: ["React Native", "Expo", "TypeScript"],
-      links: [
-        {
-          type: "GitHub",
-          href: "https://github.com/rafaelmm16/Cook-App",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "/Cook-App.mp4",
-    },
-    {
       title: "Idlewatch Agent Server",
       href: "https://github.com/rafaelmm16/Idlewatch-Agent-Server",
       dates: "Mar 2026",
@@ -313,136 +355,20 @@ export const DATA = {
       video: "",
     },
     {
-      title: "Spotify Cover",
-      href: "https://rafaelmm16.github.io/Spotify-Cover/",
-      dates: "Out 2026",
-      active: true,
-      description:
-        "Interface web inspirada no Spotify com reprodutor de áudio interativo via Web Audio API, componentização moderna e layout responsivo.",
-      technologies: ["React", "TypeScript", "Tailwind CSS", "Web Audio API"],
-      links: [
-        {
-          type: "Website",
-          href: "https://rafaelmm16.github.io/Spotify-Cover/",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "GitHub",
-          href: "https://github.com/rafaelmm16/Spotify-Cover",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "",
-    },
-    {
-      title: "Recicla Capixaba — Jogos Educativos",
-      href: "https://rafaelmm16.github.io/Projeto-Integrador-VIII-B/",
-      dates: "Out 2025",
-      active: true,
-      description:
-        "Plataforma web interativa de jogos educativos sobre reciclagem e sustentabilidade (classificação de resíduos, quiz ambiental e ranking de pontuação).",
-      technologies: ["React", "TypeScript", "Tailwind CSS"],
-      links: [
-        {
-          type: "Website",
-          href: "https://rafaelmm16.github.io/Projeto-Integrador-VIII-B/",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "GitHub",
-          href: "https://github.com/rafaelmm16/Projeto-Integrador-VIII-B",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "",
-    },
-    {
-      title: "Gerenciador de Tags — React na Prática",
-      href: "https://rafaelmm16.github.io/React-na-Pratica/",
+      title: "Web Development — Diretório Front-End",
+      href: "https://rafaelmm16.github.io/Web-Development/",
       dates: "Nov 2026",
       active: true,
       description:
-        "Aplicação web para gerenciamento, filtragem e paginação de tags de vídeo com estado sincronizado na URL (Search Params) e cache assíncrono.",
+        "Diretório interativo com 22 projetos front-end: clones de interfaces (Spotify, Netflix, YouTube, Pinterest, Apple), landing pages, telas de login, componentes UI e laboratórios de JavaScript.",
       technologies: [
-        "React",
-        "TypeScript",
-        "Vite",
+        "HTML5",
+        "CSS3",
+        "JavaScript",
         "Tailwind CSS",
-        "TanStack Query",
+        "Bootstrap",
+        "Next.js",
       ],
-      links: [
-        {
-          type: "Website",
-          href: "https://rafaelmm16.github.io/React-na-Pratica/",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "GitHub",
-          href: "https://github.com/rafaelmm16/React-na-Pratica",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "",
-    },
-    {
-      title: "Delivery Web App (IHC)",
-      href: "https://rafaelmm16.github.io/Interface-Humano-Computador/",
-      dates: "Out 2025",
-      active: true,
-      description:
-        "Protótipo funcional de uma plataforma de delivery de comida com autenticação, busca por categorias, carrinho de compras e fluxo completo de checkout.",
-      technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
-      links: [
-        {
-          type: "Website",
-          href: "https://rafaelmm16.github.io/Interface-Humano-Computador/",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "GitHub",
-          href: "https://github.com/rafaelmm16/Interface-Humano-Computador",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "",
-    },
-    {
-      title: "SGBus — Mobilidade Universitária",
-      href: "https://github.com/rafaelmm16/Projeto-de-Sistemas",
-      dates: "Jan 2023",
-      active: true,
-      description:
-        "Aplicativo pensado para facilitar a rotina do estudante na consulta de pontos e rotas de ônibus, além de recarga do cartão de passagem.",
-      technologies: [
-        "React Native",
-        "Expo",
-        "TypeScript",
-        "Node.js",
-        "TypeORM",
-        "SQLite",
-      ],
-      links: [
-        {
-          type: "GitHub",
-          href: "https://github.com/rafaelmm16/Projeto-de-Sistemas",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "/Portfolio_page-0011.jpg",
-      video: "",
-    },
-    {
-      title: "Web Development — Landing Pages & UI",
-      href: "https://rafaelmm16.github.io/Web-Development/",
-      dates: "Out 2026",
-      active: true,
-      description:
-        "Coleção de páginas web, landing pages e experimentos práticos desenvolvidos com HTML, CSS, JavaScript e Bootstrap.",
-      technologies: ["HTML", "CSS", "JavaScript", "Bootstrap"],
       links: [
         {
           type: "Website",
@@ -459,21 +385,21 @@ export const DATA = {
       video: "",
     },
     {
-      title: "Flappy Bird Clone (Godot)",
-      href: "https://github.com/rafaelmm16/Projeto-Final-SM",
-      dates: "Mar 2022",
+      title: "Idle Game",
+      href: "https://github.com/rafaelmm16/Idle-Game",
+      dates: "Jul 2025",
       active: true,
       description:
-        "Jogo 2D estilo Flappy Bird desenvolvido na engine Godot como projeto final da disciplina de Sistemas Multimídia.",
-      technologies: ["Godot", "GDScript"],
+        "Jogo incremental (idle/clicker) mobile em desenvolvimento com Expo e React Native, projetado para que o progresso continue evoluindo mesmo com o jogador inativo.",
+      technologies: ["React Native", "Expo", "TypeScript"],
       links: [
         {
           type: "GitHub",
-          href: "https://github.com/rafaelmm16/Projeto-Final-SM",
+          href: "https://github.com/rafaelmm16/Idle-Game",
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "/Portfolio_page-0010.jpg",
+      image: "",
       video: "",
     },
   ],
