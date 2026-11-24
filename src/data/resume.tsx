@@ -385,17 +385,22 @@ export const DATA = {
       video: "",
     },
     {
-      title: "Idle Game",
-      href: "https://github.com/rafaelmm16/Idle-Game",
-      dates: "Jul 2025",
+      title: "Clicker Project",
+      href: "https://rafaelmm16.github.io/Clicker-Project/",
+      dates: "Nov 2026",
       active: true,
       description:
-        "Jogo incremental (idle/clicker) mobile em desenvolvimento com Expo e React Native, projetado para que o progresso continue evoluindo mesmo com o jogador inativo.",
-      technologies: ["React Native", "Expo", "TypeScript"],
+        "Jogo incremental de clicker em duas versões: aplicação web em Next.js com estética Retro Terminal/Cyberpunk e versão original em C para terminal, com loja de upgrades, sistema de ascensão/prestígio, conquistas e save persistente.",
+      technologies: ["Next.js", "TypeScript", "Tailwind CSS", "C"],
       links: [
         {
+          type: "Website",
+          href: "https://rafaelmm16.github.io/Clicker-Project/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
           type: "GitHub",
-          href: "https://github.com/rafaelmm16/Idle-Game",
+          href: "https://github.com/rafaelmm16/Clicker-Project",
           icon: <Icons.github className="size-3" />,
         },
       ],

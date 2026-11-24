@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+  schedule:
+    # Atualiza o build estático automaticamente todos os dias às 06:00 UTC (03:00 BRT)
+    - cron: '0 6 * * *'
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
